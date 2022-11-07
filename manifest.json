@@ -1,0 +1,24 @@
+{
+	"manifest_version": 3,
+	"name": "slack-msg-recognizer",
+	"author": "TSB",
+	"description": "it recognizes the strategy of a received message",
+	"version": "1.0",
+
+	"content_scripts": [
+		{
+			"matches": [
+				"http://app.slack.com/*",
+				"https://app.slack.com/*"
+			],
+			"js": ["content.js"]
+		}
+	],
+
+	"background": {
+		"service_worker": "background.js"
+		// "scripts": ["background.js"]
+	},
+
+	"action": {}
+}
