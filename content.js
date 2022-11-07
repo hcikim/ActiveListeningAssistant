@@ -3,7 +3,13 @@
 
 function buildingframe() {
 	
-	const a = document.createElement("DIV");
+	let element = document.getElementsByClassName("agent-content");
+
+	while (element[0]){
+		element[0].parentNode.removeChild(element[0]);
+	};
+
+	var a = document.createElement("DIV");
 	
 	a.setAttribute("id", "agent-block");
 	a.setAttribute("class", "agent-content");
@@ -12,7 +18,7 @@ function buildingframe() {
 	content = ["Active listening is ongoing"];
 	a.innerHTML = '<i>' + content[0] + '</i>';
 
-	const select = document.querySelector("div.c-texty_buttons");
+	var select = document.querySelector("div.c-texty_buttons");
 	select.appendChild(a);
 
 };
@@ -33,7 +39,6 @@ function read_input() {
 		if(entry.keyCode == 13){
 			key = [];
 
-			block.remove();
 			buildingframe();
 
 		} // if users type "space" -- keycode #32 means "&nbsp"
@@ -42,42 +47,42 @@ function read_input() {
 			key.push(entry.keyCode);
 
 			if(key.length == 2){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
 			} else if(key.length == 3){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
 			} else if(key.length == 4){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
 			} else if(key.length == 5){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
 			} else if(key.length == 6){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
 			} else if(key.length == 7){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
 			} else if(key.length == 8){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
 			} else if(key.length == 9){
-				console.log(key);
+				// console.log(key);
 				console.log(input_line);
 				sendrecvData(block);
 
@@ -115,16 +120,18 @@ function gotMessage(message) {
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function sendrecvData(box){
-	const text = document.querySelector("#input > p").innerText;
+	let text = document.querySelector("#input > p").innerText;
 	chrome.runtime.sendMessage({type: 'info', value: text}, function(response){
 
 		var return_val = response.strategy;
 
-		// console.log(return_val);
+		console.log(return_val);
 		strategy = return_val;
 		guide = "You should focus on her!! Not you!!";
 		
 		updatecontent(box, strategy, guide);
+		
+		console.log("Updatecontent works!!!!");
 		
 		text = "";
 		return_val = [];
