@@ -100,7 +100,7 @@ function updatecontent(box, strategy, guide) {
 	box.removeAttribute('style');
 	box.setAttribute("style", "margin-left:5px; margin-right:5px; border: 2px solid #503570; border-radius: 15px; padding: 8px; cursor: help;");
 	box.setAttribute("title", guide);
-	box.innerHTML = '<i><b>' + strategy + '</b></i>';
+	box.innerHTML = '<i>' + strategy + '</i>';
 
 };
 
@@ -120,6 +120,14 @@ function gotMessage(message) {
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function sendrecvData(box){
+
+	var fix_guide = {
+		"Self-disclosure": [
+		"If sharing your story seems like it will diminish the member in any way. For example “you think you have it bad, my story is so much worse…” You are seeking to help, not hurt and you never want to “one up” someone.",
+		"If you share an illness story not a wellness or recovery story. The focus needs to be on offering hope to the person you are listening to, not drag anyone down.",
+		"If you find yourself with feelings that you are trying to manage while you share. This is a sign that you may be triggered by the person you are listening to and the focus is then off them and on you. If this is happening, you should exit the conversation and ask the member to find a new listener."]
+	}
+
 	let text = document.querySelector("#input > p").innerText;
 	chrome.runtime.sendMessage({type: 'info', value: text}, function(response){
 
@@ -127,9 +135,14 @@ function sendrecvData(box){
 
 		console.log(return_val);
 		strategy = return_val;
-		guide = "You should focus on her!! Not you!!";
 		
-		updatecontent(box, strategy, guide);
+		if (fix_guide[strategy]){
+			// console.log(strategy + " ----- ");
+			guide = fix_guide[strategy][0];
+			// console.log(guide + " ----- ");
+			note = strategy + " maybe not effective <b>*[hover for detail]*</b>";
+			updatecontent(box, note, guide);
+		};
 		
 		console.log("Updatecontent works!!!!");
 		
