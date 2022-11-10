@@ -30,7 +30,7 @@ function read_input() {
 	input.setAttribute("id", "input");
 
 	let input_line = document.querySelector("#input > p");
-	let block = document.querySelector("#agent-block");
+	// let block = document.querySelector("#agent-block");
 	let key = [];
 	
 	input.onkeyup = function(entry){
@@ -49,42 +49,42 @@ function read_input() {
 			if(key.length == 2){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			} else if(key.length == 3){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			} else if(key.length == 4){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			} else if(key.length == 5){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			} else if(key.length == 6){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			} else if(key.length == 7){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			} else if(key.length == 8){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			} else if(key.length == 9){
 				// console.log(key);
 				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			};
 		};
@@ -92,16 +92,15 @@ function read_input() {
 };
 
 
-function updatecontent(box, strategy, guide) {
-
-	// strategy = ["Self-disclosure"]
-	// guide = ["It is more recommended you to type it by yourself!!!"]
+function updatecontent(strategy, guide) {
+	
+	let box = document.querySelector("#agent-block");
 
 	box.removeAttribute('style');
 	box.setAttribute("style", "margin-left:5px; margin-right:5px; border: 2px solid #503570; border-radius: 15px; padding: 8px; cursor: help;");
 	box.setAttribute("title", guide);
 	box.innerHTML = '<i>' + strategy + '</i>';
-
+	
 };
 
 function gotMessage(message) {
@@ -119,7 +118,7 @@ function gotMessage(message) {
 
 chrome.runtime.onMessage.addListener(gotMessage);
 
-function sendrecvData(box){
+function sendrecvData(){
 
 	var fix_guide = {
 		"Self-disclosure": [
@@ -133,18 +132,16 @@ function sendrecvData(box){
 
 		var return_val = response.strategy;
 
-		console.log(return_val);
+		console.log("strategy: " + return_val);
 		strategy = return_val;
 		
 		if (fix_guide[strategy]){
-			// console.log(strategy + " ----- ");
+			
 			guide = fix_guide[strategy][0];
-			// console.log(guide + " ----- ");
 			note = strategy + " maybe not effective <b>*[hover for detail]*</b>";
-			updatecontent(box, note, guide);
+
+			updatecontent(note, guide);
 		};
-		
-		console.log("Updatecontent works!!!!");
 		
 		text = "";
 		return_val = [];

@@ -3,25 +3,6 @@
 
 console.log("background.js is running...");
 
-// // if Slack tab is refreshed
-// chrome.tabs.onActivated.addListener(function (tabId, changeInfo, tab){
-// 	// if the refresh is "complete" and the tab is active
-// 	if (changeInfo.status == 'complete' && tab.active) {
-// 		// print the tab status -- it should print "complete"
-// 		console.log(changeInfo.status);
-		
-// 		let msg = {
-// 			txt: "hello"
-// 		};
-		
-// 		setTimeout(function(){
-// 			console.log("wait for a second...");
-// 			chrome.tabs.sendMessage(tab.id, msg);
-// 		}, 3000);
-// 	};
-// });
-
-
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
 	// if the refresh is "complete" and the tab is active
 	if (changeInfo.status == 'complete' && tab.active) {
@@ -50,7 +31,7 @@ chrome.runtime.onMessage.addListener(
 			strategy = ["Self-disclosure"];
 			guide = ["It is more recommended you to type it by yourself!!!"];
 
-			var flex_url = "http://89ca-35-197-130-108.ngrok.io/classify?sentence=";
+			var flex_url = "http://0b0a-34-147-108-40.ngrok.io/classify?sentence=";
 			var url = flex_url + request.value;
 			console.log(url);
 
