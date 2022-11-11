@@ -1,5 +1,5 @@
 // Taewook, Ryan, Zhenhui
-// Date: November 7, 2023
+// Date: November 10, 2023
 
 function buildingframe() {
 	
@@ -111,6 +111,6 @@ function sendrecvData(){
 		
 		text = "";
 		return_val = [];
-		
+
 	});
 };
