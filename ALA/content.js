@@ -46,46 +46,10 @@ function read_input() {
 		
 			key.push(entry.keyCode);
 
-			if(key.length == 2){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData();
+			if(key.length > 2){
 
-			} else if(key.length == 3){
-				// console.log(key);
-				console.log(input_line);
 				sendrecvData();
-
-			} else if(key.length == 4){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData();
-
-			} else if(key.length == 5){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData();
-
-			} else if(key.length == 6){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData();
-
-			} else if(key.length == 7){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData();
-
-			} else if(key.length == 8){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData();
-
-			} else if(key.length == 9){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData();
-
+			
 			};
 		};
 	};
@@ -128,6 +92,8 @@ function sendrecvData(){
 	}
 
 	let text = document.querySelector("#input > p").innerText;
+	console.log(text);
+	
 	chrome.runtime.sendMessage({type: 'info', value: text}, function(response){
 
 		var return_val = response.strategy;
@@ -136,7 +102,7 @@ function sendrecvData(){
 		strategy = return_val;
 		
 		if (fix_guide[strategy]){
-			
+
 			guide = fix_guide[strategy][0];
 			note = strategy + " maybe not effective <b>*[hover for detail]*</b>";
 
@@ -145,5 +111,6 @@ function sendrecvData(){
 		
 		text = "";
 		return_val = [];
+		
 	});
 };
