@@ -1,5 +1,5 @@
 // Taewook, Ryan, Zhenhui
-// Date: November 7, 2023
+// Date: November 10, 2023
 
 function buildingframe() {
 
@@ -32,7 +32,7 @@ function read_input() {
 	input.setAttribute("id", "input");
 
 	let input_line = document.querySelector("#input > p");
-	let block = document.querySelector("#agent-block");
+	// let block = document.querySelector("#agent-block");
 	let key = [];
 
 	input.onkeyup = function(entry){
@@ -48,45 +48,9 @@ function read_input() {
 
 			key.push(entry.keyCode);
 
-			if(key.length == 2){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
+			if(key.length > 2){
 
-			} else if(key.length == 3){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
-
-			} else if(key.length == 4){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
-
-			} else if(key.length == 5){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
-
-			} else if(key.length == 6){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
-
-			} else if(key.length == 7){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
-
-			} else if(key.length == 8){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
-
-			} else if(key.length == 9){
-				// console.log(key);
-				console.log(input_line);
-				sendrecvData(block);
+				sendrecvData();
 
 			};
 		};
@@ -94,10 +58,9 @@ function read_input() {
 };
 
 
-function updatecontent(box, strategy, guide) {
+function updatecontent(strategy, guide) {
 
-	// strategy = ["Self-disclosure"]
-	// guide = ["It is more recommended you to type it by yourself!!!"]
+	let box = document.querySelector("#agent-block");
 
 	box.removeAttribute('style');
 	box.setAttribute("style", "margin-left:5px; margin-right:5px; border: 2px solid #503570; border-radius: 15px; padding: 8px; cursor: help;");
@@ -171,7 +134,7 @@ function gotMessage(message) {
 
 chrome.runtime.onMessage.addListener(gotMessage);
 
-function sendrecvData(box){
+function sendrecvData(){
 
 	var fix_guide = {
 		"Self-disclosure": [
@@ -183,15 +146,17 @@ function sendrecvData(box){
 	}
 
 	let text = document.querySelector("#input > p").innerText;
+	console.log(text);
+
 	chrome.runtime.sendMessage({type: 'info', value: text}, function(response){
 
 		var return_val = response.strategy;
 
-		console.log(return_val);
+		console.log("strategy: " + return_val);
 		strategy = return_val;
 
 		if (fix_guide[strategy]){
-			// console.log(strategy + " ----- ");
+
 			guide = fix_guide[strategy][0];
 			// console.log(guide + " ----- ");
 			// We are not assuming self-disclosure is bad... since it has some tips
@@ -204,5 +169,6 @@ function sendrecvData(box){
 
 		text = "";
 		return_val = [];
+
 	});
 };

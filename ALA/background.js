@@ -1,26 +1,7 @@
 // Taewook, Ryan, Zhenhui
-// Date: November 7, 2023
+// Date: November 10, 2023
 
 console.log("background.js is running...");
-
-// // if Slack tab is refreshed
-// chrome.tabs.onActivated.addListener(function (tabId, changeInfo, tab){
-// 	// if the refresh is "complete" and the tab is active
-// 	if (changeInfo.status == 'complete' && tab.active) {
-// 		// print the tab status -- it should print "complete"
-// 		console.log(changeInfo.status);
-
-// 		let msg = {
-// 			txt: "hello"
-// 		};
-
-// 		setTimeout(function(){
-// 			console.log("wait for a second...");
-// 			chrome.tabs.sendMessage(tab.id, msg);
-// 		}, 3000);
-// 	};
-// });
-
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
 	// if the refresh is "complete" and the tab is active
