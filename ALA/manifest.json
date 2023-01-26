@@ -4,14 +4,20 @@
 	"author": "TSB",
 	"description": "it recognizes the strategy of a received message",
 	"version": "1.0",
-
+	"options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+	"permissions": [
+    "storage"
+  ],
 	"content_scripts": [
 		{
 			"matches": [
 				"http://app.slack.com/*",
 				"https://app.slack.com/*"
 			],
-			"js": ["content.js"],
+			"js": ["content.js", "options.js"],
 			"css": ["styles.css"]
 		}
 	],

@@ -20,6 +20,16 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
 	};
 });
 
+// Where we will expose all the data we retrieve from storage.sync.
+const storageCache = { apiUrl: "" };
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'sync' && changes.options?.newValue) {
+    const apiUrl = Boolean(changes.options.newValue.apiUrl);
+		console.log("Got new API url: ", apiUrl)
+    storageCache.apiUrl = apiUrl;
+  }
+});
+
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse){
 
@@ -31,7 +41,7 @@ chrome.runtime.onMessage.addListener(
 			strategy = ["Self-disclosure"];
 			guide = ["It is more recommended you to type it by yourself!!!"];
 
-			var flex_url = "http://f0f7-34-143-161-15.ngrok.io/classify?sentence="
+			var flex_url = storageCache.apiUrl + "/classify?sentence="
 			var url = flex_url + request.value;
 			console.log(url);
 
