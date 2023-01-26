@@ -9,11 +9,11 @@ console.log("background.js is running...");
 // 	if (changeInfo.status == 'complete' && tab.active) {
 // 		// print the tab status -- it should print "complete"
 // 		console.log(changeInfo.status);
-		
+
 // 		let msg = {
 // 			txt: "hello"
 // 		};
-		
+
 // 		setTimeout(function(){
 // 			console.log("wait for a second...");
 // 			chrome.tabs.sendMessage(tab.id, msg);
@@ -27,11 +27,11 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
 	if (changeInfo.status == 'complete' && tab.active) {
 		// print the tab status -- it should print "complete"
 		console.log(changeInfo.status);
-		
+
 		let msg = {
 			txt: "hello"
 		};
-		
+
 		setTimeout(function(){
 			console.log("wait for a second...");
 			chrome.tabs.sendMessage(tab.id, msg);
@@ -50,11 +50,11 @@ chrome.runtime.onMessage.addListener(
 			strategy = ["Self-disclosure"];
 			guide = ["It is more recommended you to type it by yourself!!!"];
 
-			var flex_url = "http://89ca-35-197-130-108.ngrok.io/classify?sentence=";
+			var flex_url = "http://e589-34-143-161-15.ngrok.io/classify?sentence=";
 			var url = flex_url + request.value;
 			console.log(url);
 
-			fetch(url, {  
+			fetch(url, {
 				mode: 'cors',
 				method: 'GET',
 				headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"}

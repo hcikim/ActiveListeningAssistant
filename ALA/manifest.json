@@ -11,7 +11,8 @@
 				"http://app.slack.com/*",
 				"https://app.slack.com/*"
 			],
-			"js": ["content.js"]
+			"js": ["content.js"],
+			"css": ["styles.css"]
 		}
 	],
 
