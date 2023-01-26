@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener(
 			strategy = ["Self-disclosure"];
 			guide = ["It is more recommended you to type it by yourself!!!"];
 
-			var flex_url = "http://e589-34-143-161-15.ngrok.io/classify?sentence=";
+			var flex_url = "http://f0f7-34-143-161-15.ngrok.io/classify?sentence="
 			var url = flex_url + request.value;
 			console.log(url);
 

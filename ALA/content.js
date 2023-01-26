@@ -100,7 +100,7 @@ function updatecontent(strategy, guide) {
 	// shortTip = "<div><span>Consider reviewing tips on good and bad ways to use this strategy</span>"+toggleButton+"</div>";
 	shortTipContainer = document.createElement("div");
 	shortTip = document.createElement("span")
-	shortTip.innerHTML = "Consider reviewing tips on good and bad ways to use this strategy";
+	shortTip.innerHTML = "Consider reviewing tips on how to use this strategy";
 	shortTipContainer.appendChild(shortTip);
 	shortTip.appendChild(toggleButton);
 
@@ -142,6 +142,11 @@ function sendrecvData(){
 			"If sharing your story seems like it will diminish the member in any way. For example “you think you have it bad, my story is so much worse…” You are seeking to help, not hurt and you never want to “one up” someone.",
 			"If you share an illness story not a wellness or recovery story. The focus needs to be on offering hope to the person you are listening to, not drag anyone down.",
 			"If you find yourself with feelings that you are trying to manage while you share. This is a sign that you may be triggered by the person you are listening to and the focus is then off them and on you. If this is happening, you should exit the conversation and ask the member to find a new listener."
+		],
+		"Providing Suggestions": [
+			"<div>Dos: <ul><li>Show you trust in their ability to work this out, e.g. 'You are the expert on your situation. I can’t give advice, but I can listen and help you figure out your path forward.'</li><li>Help them to think about things from another point of view, e.g. 'What would you say to a friend who was in your situation?'</li><li>Guide them to look inside themselves for the answer, e.g. 'What do you feel like you should do?'</li></ul></div><div>Dont's: Don’t judge. Don’t push the person in any direction. Don’t give advice. Don’t give personal opinions.</div>",
+			"<div>Dos: If you want to give a suggestion, preface with a question to encourage them to reflect. <i>e.g., 'Have you thought about other ways you could handle this? One idea I had was...'<i></div><div>Dont's: Don’t judge. Don’t push the person in any direction. Don’t give advice. Don’t give personal opinions.</div>",
+			"<div>Good: Show you trust in their ability to work this out, e.g. <i>'You are the expert on your situation. I can’t give advice, but I can listen and help you figure out your path forward.'<i></div><div>Bad: ",
 		]
 	}
 
@@ -162,7 +167,7 @@ function sendrecvData(){
 			// We are not assuming self-disclosure is bad... since it has some tips
 			// note = strategy + " maybe not effective <b>*[hover for detail]*</b>";
 
-			updatecontent(box, strategy, guide);
+			updatecontent(strategy, guide);
 		};
 
 		console.log("Updatecontent works!!!!");
