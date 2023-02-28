@@ -32,5 +32,7 @@
 		// "scripts": ["background.js"]
 	},
 
-	"action": {}
+	"action": {
+		"default_popup": "options.html"
+	}
 }

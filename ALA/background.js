@@ -20,16 +20,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab){
 	};
 });
 
-// Where we will expose all the data we retrieve from storage.sync.
-const storageCache = { apiUrl: "" };
-chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === 'sync' && changes.options?.newValue) {
-    const apiUrl = Boolean(changes.options.newValue.apiUrl);
-		console.log("Got new API url: ", apiUrl)
-    storageCache.apiUrl = apiUrl;
-  }
-});
-
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse){
 
@@ -38,28 +28,32 @@ chrome.runtime.onMessage.addListener(
 		if(request.type == 'info'){
 			console.log(request.value);
 
-			strategy = ["Self-disclosure"];
-			guide = ["It is more recommended you to type it by yourself!!!"];
+			chrome.storage.sync.get(["apiUrl"]).then((storage) => {
 
-			var flex_url = storageCache.apiUrl + "/classify?sentence="
-			var url = flex_url + request.value;
-			console.log(url);
+				var flex_url = storage.apiUrl + "/classify?sentence="
+				var url = flex_url + request.value;
+				console.log(url);
 
-			fetch(url, {
-				mode: 'cors',
-				method: 'GET',
-				headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"}
-			})
-			.then(function (response) {
-				response.json().then(function(strategy){
-					console.log(strategy);
-					sendResponse({"strategy": strategy});
+				fetch(url, {
+					mode: 'cors',
+					method: 'GET',
+					headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"}
+				})
+				.then(function (response) {
+					response.json().then(function(strategy){
+						console.log(strategy);
+						sendResponse({"strategy": strategy});
+					});
+				})
+				.catch(function (error) {
+					console.log('Request failed', error);
 				});
-			})
-			.catch(function (error) {
-				console.log('Request failed', error);
+
 			});
 
-			return true;
 		};
+
+		// To send an asynchronous response, we must return true from the event listener
+		// https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage
+		return true;
 });

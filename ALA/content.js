@@ -167,6 +167,11 @@ function sendrecvData(){
 
 	chrome.runtime.sendMessage({type: 'info', value: text}, function(response){
 
+		if (!response) {
+			console.log("Empty response from background.js process")
+			return
+		}
+
 		var return_val = response.strategy;
 
 		console.log("strategy: " + return_val);
