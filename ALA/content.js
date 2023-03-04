@@ -1,7 +1,6 @@
 // Taewook, Ryan, Zhenhui
-// Date: November 10, 2023
 
-function buildingframe() {
+async function buildingframe() {
 
 	let element = document.getElementsByClassName("agent-content");
 
@@ -9,20 +8,17 @@ function buildingframe() {
 		element[0].parentNode.removeChild(element[0]);
 	};
 
-	var a = document.createElement("DIV");
+	var agentBlock = document.createElement("DIV");
+	agentBlock.setAttribute('id', 'agent-block')
+	agentBlock.setAttribute('class', 'agent-content purple-border')
 
-	a.setAttribute("id", "agent-block");
-	a.setAttribute("class", "agent-content");
-	a.setAttribute("style", "margin-left:5px; margin-right:5px; border: 2px solid Lavender; border-radius: 15px; padding: 8px; cursor: none;");
-
-
-	content = ["Rawal is active."];
-	// content = ["ALIA is actively viewing what you type, so she can provide helpful tips."];
-	a.innerHTML = '<i>' + content[0] + '</i>';
-
+	// Can append (1) within the Slack message area or (2) below message area
 	// var select = document.querySelector("div.c-texty_buttons");
 	var select = document.querySelector("div.p-message_pane_input_inner_main");
-	select.appendChild(a);
+	select.appendChild(agentBlock);
+
+	contentURL = chrome.runtime.getURL("agent_content.html");
+	document.getElementById('agent-block').innerHTML = await (await fetch(contentURL)).text()
 
 };
 

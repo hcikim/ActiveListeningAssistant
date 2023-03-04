@@ -16,6 +16,10 @@
 	"permissions": [
     "storage"
   ],
+	"web_accessible_resources": [{
+		"matches": ["<all_urls>"],
+		"resources": ["agent_content.html"]
+	}],
 	"content_scripts": [
 		{
 			"matches": [

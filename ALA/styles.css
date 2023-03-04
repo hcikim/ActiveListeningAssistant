@@ -50,3 +50,72 @@
   background-color: #298e46;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
+
+.purple-border {
+  border: 2px solid Lavender;
+  border-radius: 15px;
+  padding: 8px;
+  cursor: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 3fr 7fr; /* set column widths in fractions */
+}
+
+.left-column {
+  grid-column: 1; /* span the first column */
+}
+
+.right-column {
+  grid-column: 2; /* span the second column */
+}
+
+.slider {
+  width: 500px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  overflow-x: auto;
+
+  border-radius: 5px;
+
+  scroll-behavior: smooth;
+
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-points-x: repeat(500px);
+  scroll-snap-type: mandatory;
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  flex-shrink: 0;
+  width: 500px;
+  height: 50px;
+  border-radius: 10px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+.slides > div:target {
+  transform: scale(0.8);
+}
